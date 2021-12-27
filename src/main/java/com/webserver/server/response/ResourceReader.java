@@ -1,9 +1,9 @@
 package com.webserver.server.response;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
+import com.webserver.exceptions.BadRequestException;
+import com.webserver.server.request.Request;
+
+import java.io.*;
 import java.util.StringJoiner;
 
 public class ResourceReader {
@@ -13,11 +13,13 @@ public class ResourceReader {
     this.webappPath = webappPath;
   }
 
-  public String readResource(String uri) throws FileNotFoundException {
-    BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(webappPath + uri)));
-    StringJoiner result = new StringJoiner("\n");
-    fileReader.lines().forEach(result::add);
-
-    return result.toString();
+  public String readResource(String uri) throws IOException {
+    try(BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(webappPath + uri)))){
+      StringJoiner result = new StringJoiner("\n");
+      fileReader.lines().forEach(result::add);
+      return result.toString();
+    } catch (FileNotFoundException ex){
+      throw new BadRequestException(ex.getMessage());
+    }
   }
 }

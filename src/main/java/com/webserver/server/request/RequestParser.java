@@ -29,7 +29,7 @@ public class RequestParser {
       String line = reader.readLine();
       if(Objects.isNull(line)) continue;
 
-      String[] headerData = reader.readLine().split(": ");
+      String[] headerData = line.split(": ");
       if(headerData.length > 1){
         headers.put(headerData[0], headerData[1]);
       }

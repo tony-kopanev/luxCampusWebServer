@@ -1,5 +1,6 @@
 package com.webserver.server.request;
 
+import com.webserver.exceptions.BadRequestException;
 import com.webserver.server.response.ResourceReader;
 import com.webserver.server.response.ResponseWriter;
 
@@ -23,9 +24,13 @@ public class RequestHandler {
   }
 
   public void handle() throws IOException {
-    Request request = RequestParser.parse(socketReader);
-    ResourceReader resourceReader = new ResourceReader(webappPath);
-    String content = resourceReader.readResource(request.getUri());
-    ResponseWriter.writeSuccessResponse(content, socketWriter);
+    try {
+      Request request = RequestParser.parse(socketReader);
+      ResourceReader resourceReader = new ResourceReader(webappPath);
+      String content = resourceReader.readResource(request.getUri());
+      ResponseWriter.writeSuccessResponse(content, socketWriter);
+    } catch (BadRequestException ex){
+      ResponseWriter.writeBadRequestResponse(socketWriter);
+    }
   }
 }

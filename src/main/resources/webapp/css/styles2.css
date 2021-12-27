@@ -1,10 +1,18 @@
 body{
-    padding-top: 100px;
-    background-color: blue;
-    text-align: center;
+  padding-top: 100px;
+  background-color: blue;
+  text-align: center;
 }
 
 h1 {
-    font-size: 45px;
-    color: white;
+  font-size: 45px;
+  color: white;
 }
+
+a {
+  font: .8rem sans-serif;
+  color: aliceblue;
+  margin-right: .5rem;
+}
+
+a:last-child {margin-right: none;}
