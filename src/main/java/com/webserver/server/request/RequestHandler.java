@@ -1,4 +1,7 @@
-package com.webserver;
+package com.webserver.server.request;
+
+import com.webserver.server.response.ResourceReader;
+import com.webserver.server.response.ResponseWriter;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

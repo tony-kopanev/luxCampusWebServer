@@ -1,4 +1,4 @@
-package com.webserver;
+package com.webserver.server.response;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

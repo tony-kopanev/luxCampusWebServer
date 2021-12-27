@@ -1,4 +1,6 @@
-package com.webserver;
+package com.webserver.server;
+
+import com.webserver.server.request.RequestHandler;
 
 import java.io.*;
 import java.net.ServerSocket;

@@ -1,4 +1,4 @@
-package com.webserver;
+package com.webserver.server.response;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -9,6 +9,7 @@ public class ResponseWriter {
     writer.newLine();
     writer.newLine();
     writer.write(content);
+    writer.flush();
     System.out.println("Request obtained");
   }
 }

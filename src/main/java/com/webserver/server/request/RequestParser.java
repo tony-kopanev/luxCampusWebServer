@@ -1,8 +1,9 @@
-package com.webserver;
+package com.webserver.server.request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class RequestParser {
 
@@ -20,16 +21,19 @@ public class RequestParser {
     request.setUri(uriData[1]);
   }
 
-  private static void injectHeaders(BufferedReader reader, Request request){
+  private static void injectHeaders(BufferedReader reader, Request request) throws IOException {
     HashMap<String, String> headers = new HashMap<>();
 
     // fill headers
-    reader.lines().forEach(header -> {
-      String[] headerData = header.split(": ");
-      if(headerData.length > 1) {
+    while (reader.ready()){
+      String line = reader.readLine();
+      if(Objects.isNull(line)) continue;
+
+      String[] headerData = reader.readLine().split(": ");
+      if(headerData.length > 1){
         headers.put(headerData[0], headerData[1]);
       }
-    });
+    }
 
     request.setHeaders(headers);
   }

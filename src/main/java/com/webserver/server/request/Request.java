@@ -1,4 +1,4 @@
-package com.webserver;
+package com.webserver.server.request;
 
 import java.util.HashMap;
 
@@ -32,4 +32,4 @@ public class Request {
   }
 }
 
-enum HttpMethod { GET, POST; }
+

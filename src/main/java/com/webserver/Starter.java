@@ -1,5 +1,7 @@
 package com.webserver;
 
+import com.webserver.server.Server;
+
 public class Starter {
   public static void main(String[] args) throws Exception {
     Server server = new Server();
